@@ -25,7 +25,7 @@ void make_dMatrix(int rows, int cols, bool major, dMatrix &matrix)
     }
     else
     {
-        // row major
+        // column major
         matrix.mat = (double **)malloc(cols * sizeof(double *));
         for (size_t i = 0; i < cols; i++)
             matrix.mat[i] = (double *)malloc(rows * sizeof(double));
