@@ -64,6 +64,9 @@ void** make_Matrix(const int rows, const int cols, const enum TYPE type, const e
             case DOUBLE:
                 tSize = cols*sizeof(double); pSize = rows*sizeof(double*);
                 break;
+            default:
+                printf("\n!!!WRONG TYPE!!!\n\n"); exit(-1);
+                break;
         }
         tMat = (void **)malloc(pSize);
         for (size_t i = 0; i < rows; i++)
@@ -81,6 +84,9 @@ void** make_Matrix(const int rows, const int cols, const enum TYPE type, const e
                     break;
                 case DOUBLE:
                     tSize = rows*sizeof(double); pSize = cols*sizeof(double*);
+                    break;
+                default:
+                    printf("\n!!!WRONG TYPE!!!\n\n"); exit(-1);
                     break;
             }
             tMat = (void **)malloc(pSize);
