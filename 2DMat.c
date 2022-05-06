@@ -1,17 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+//Enumeration for matrix major type
 enum MAJOR{
     ROW = 1,
     COL = 0
 };
 
+//Enum for matrix type
 enum TYPE{
     INT,
     FLOAT,
     DOUBLE
 };
 
+//matrix of integers
 typedef struct{
     int length;
     int rows;
@@ -21,6 +24,7 @@ typedef struct{
     int **mat;
 } intMatrix;
 
+//matrix of floats
 typedef struct{
     int length;
     int rows;
@@ -30,6 +34,7 @@ typedef struct{
     float **mat;
 } floatMatrix;
 
+//matrix of doubles
 typedef struct{
     int length;
     int rows;
@@ -39,6 +44,7 @@ typedef struct{
     double **mat;
 } doubleMatrix;
 
+//void matrix for generic functionality
 typedef struct{
     int length;
     int rows;
@@ -48,6 +54,7 @@ typedef struct{
     void **mat;
 } voidMatrix;
 
+//generic function for creating 2d matrix
 void** make_Matrix(const int rows, const int cols, const enum TYPE type, const enum MAJOR major){
     void **tMat;
     unsigned long tSize, pSize;
@@ -100,6 +107,8 @@ void** make_Matrix(const int rows, const int cols, const enum TYPE type, const e
     }
 };
 
+
+//generic function for creating 2DMatrix object
 voidMatrix* make_2DMatrix(const int rows, const int cols, const enum TYPE type, const enum MAJOR major)
 {
     voidMatrix* matrix = (voidMatrix*)malloc(sizeof(voidMatrix));
@@ -124,7 +133,7 @@ int main()
 
     for(int j = 0; j < 5; j++){
         for(int i = 0; i < 7; i++)
-            printf("%f ", im->mat[j][i]);
+            printf("%.0f ", im->mat[j][i]);
         printf("\n");
     }
     return 0;
