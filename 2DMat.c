@@ -125,15 +125,15 @@ voidMatrix* make_2DMatrix(const int rows, const int cols, const enum TYPE type, 
 int main()
 {
     
-    floatMatrix* im = (floatMatrix*)make_2DMatrix(5, 7, DOUBLE, ROW);
-    for(int j = 0; j < im->rows; j++){
-        for(int i = 0; i < im->cols; i++)
-            im->mat[j][i] = j*im->cols+i;
+    floatMatrix* matObj = (floatMatrix*)make_2DMatrix(5, 7, DOUBLE, ROW);
+    for(int j = 0; j < matObj->rows; j++){
+        for(int i = 0; i < matObj->cols; i++)
+            matObj->mat[j][i] = j*matObj->cols+i;
     }
 
-    for(int j = 0; j < im->rows; j++){
-        for(int i = 0; i < im->cols; i++)
-            printf("%.0f ", im->mat[j][i]);
+    for(int j = 0; j < matObj->rows; j++){
+        for(int i = 0; i < matObj->cols; i++)
+            printf("%.0f ", matObj->mat[j][i]);
         printf("\n");
     }
     return 0;
