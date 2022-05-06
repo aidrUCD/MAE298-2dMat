@@ -126,13 +126,13 @@ int main()
 {
     
     floatMatrix* im = (floatMatrix*)make_2DMatrix(5, 7, DOUBLE, ROW);
-    for(int j = 0; j < 5; j++){
-        for(int i = 0; i < 7; i++)
-            im->mat[j][i] = j*7+i;
+    for(int j = 0; j < im->rows; j++){
+        for(int i = 0; i < im->cols; i++)
+            im->mat[j][i] = j*im->cols+i;
     }
 
-    for(int j = 0; j < 5; j++){
-        for(int i = 0; i < 7; i++)
+    for(int j = 0; j < im->rows; j++){
+        for(int i = 0; i < im->cols; i++)
             printf("%.0f ", im->mat[j][i]);
         printf("\n");
     }
