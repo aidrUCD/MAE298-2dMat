@@ -16,7 +16,6 @@ typedef struct{
     int length;
     int rows;
     int cols;
-    int end;
     enum TYPE type;
     enum MAJOR major;
     int **mat;
@@ -26,7 +25,6 @@ typedef struct{
     int length;
     int rows;
     int cols;
-    int end;
     enum TYPE type;
     enum MAJOR major;
     float **mat;
@@ -36,7 +34,6 @@ typedef struct{
     int length;
     int rows;
     int cols;
-    int end;
     enum TYPE type;
     enum MAJOR major;
     double **mat;
@@ -46,7 +43,6 @@ typedef struct{
     int length;
     int rows;
     int cols;
-    int end;
     enum TYPE type;
     enum MAJOR major;
     void **mat;
@@ -74,24 +70,28 @@ void** make_Matrix(const int rows, const int cols, const enum TYPE type, const e
             tMat[i] = malloc(tSize);
 
         return tMat;
-    }
-    //Column Major
-    switch (type){
-            case INT:
-                tSize = rows*sizeof(int); pSize = cols*sizeof(int*);
-                break;
-            case FLOAT:
-                tSize = rows*sizeof(float); pSize = cols*sizeof(float*);
-                break;
-            case DOUBLE:
-                tSize = rows*sizeof(double); pSize = cols*sizeof(double*);
-                break;
-        }
-        tMat = (void **)malloc(pSize);
-        for (size_t i = 0; i < cols; i++)
-            tMat[i] = malloc(tSize);
+    }else if(major == COL){
+        //Column Major
+        switch (type){
+                case INT:
+                    tSize = rows*sizeof(int); pSize = cols*sizeof(int*);
+                    break;
+                case FLOAT:
+                    tSize = rows*sizeof(float); pSize = cols*sizeof(float*);
+                    break;
+                case DOUBLE:
+                    tSize = rows*sizeof(double); pSize = cols*sizeof(double*);
+                    break;
+            }
+            tMat = (void **)malloc(pSize);
+            for (size_t i = 0; i < cols; i++)
+                tMat[i] = malloc(tSize);
 
-    return tMat;
+        return tMat;
+    }else{
+        printf("\n!!!Wrong major!!!\n\n");
+        exit(-1);
+    }
 };
 
 voidMatrix* make_2DMatrix(const int rows, const int cols, const enum TYPE type, const enum MAJOR major)
@@ -102,7 +102,6 @@ voidMatrix* make_2DMatrix(const int rows, const int cols, const enum TYPE type, 
     matrix->length = rows * cols;
     matrix->type = type;
     matrix->major = major;
-    matrix->end = matrix->length - 1;
     matrix->mat = make_Matrix(rows, cols, type, major);
     
     return matrix;
@@ -111,7 +110,7 @@ voidMatrix* make_2DMatrix(const int rows, const int cols, const enum TYPE type, 
 int main()
 {
     
-    doubleMatrix* im = (doubleMatrix*)make_2DMatrix(5, 7, DOUBLE, ROW);
+    floatMatrix* im = (floatMatrix*)make_2DMatrix(5, 7, DOUBLE, ROW);
     for(int j = 0; j < 5; j++){
         for(int i = 0; i < 7; i++)
             im->mat[j][i] = j*7+i;
